@@ -4,12 +4,12 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "test:solana-sign-in": "tsx test-solana-sign-in.ts",
-    "test:solana-sign-message": "tsx test-solana-sign-message.ts",
-    "test:solana-sign-transaction": "tsx test-solana-sign-transaction.ts",
-    "test:solana-sign-offline": "tsx test-solana-sign-offline.ts"
+    "test:solana-sign-in": "tsx test/test-solana-sign-in.ts",
+    "test:solana-sign-message": "tsx test/test-solana-sign-message.ts",
+    "test:solana-sign-transaction": "tsx test/test-solana-sign-transaction.ts",
+    "test:solana-sign-offline": "tsx test/test-solana-sign-offline.ts"
   },
+  "type": "module",
   "keywords": [],
   "author": "Bram Borggreve",
   "license": "MIT",
@@ -22,6 +22,7 @@
   },
   "dependencies": {
     "@solana/rpc": "2",
-    "@solana/web3.js": "2"
+    "@solana/web3.js": "2",
+    "picocolors": "^1.1.1"
   }
 }

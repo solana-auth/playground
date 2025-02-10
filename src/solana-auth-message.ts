@@ -10,6 +10,7 @@ export interface SolanaAuthMessage {
 
 export interface SolanaAuthMessagePayload {
   chain: string
+  text: string
   // TODO: Define the properties.
 }
 
