@@ -1,0 +1,27 @@
+{
+  "name": "playground",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "test:solana-sign-in": "tsx test-solana-sign-in.ts",
+    "test:solana-sign-message": "tsx test-solana-sign-message.ts",
+    "test:solana-sign-transaction": "tsx test-solana-sign-transaction.ts",
+    "test:solana-sign-offline": "tsx test-solana-sign-offline.ts"
+  },
+  "keywords": [],
+  "author": "Bram Borggreve",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^22.13.1",
+    "dotenv": "^16.4.7",
+    "prettier": "^3.5.0",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.3"
+  },
+  "dependencies": {
+    "@solana/rpc": "2",
+    "@solana/web3.js": "2"
+  }
+}
