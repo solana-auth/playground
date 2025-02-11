@@ -18,6 +18,7 @@ export async function solanaSignOfflineCreate(
     nonce: `Nonce ${Date.now()}`,
     message: {
       chain: 'solana:devnet',
+      text: `This is the message to sign`,
     },
   }
 }

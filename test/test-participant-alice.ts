@@ -1,8 +1,9 @@
 import { SolanaAuthInstance } from '../src/solana-auth-instance'
-import { getAddressFromPublicKey, getBase58Decoder, getUtf8Encoder, signBytes } from '@solana/web3.js'
+import { getAddressFromPublicKey, signBytes } from '@solana/web3.js'
 import { SolanaAuthMessage, SolanaAuthMessageSigned } from '../src'
 import { getKeypairFromFile } from './test-helpers'
 import pico from 'picocolors'
+import { stringToReadonlyUint8Array, uint8ArrayToBase58 } from '../src/utils'
 
 /**
  * This is a test helper that implements the participant role for Alice
@@ -31,9 +32,9 @@ export async function testParticipantAlice({ solanaAuth }: { solanaAuth: SolanaA
     signMessage: async (payload: SolanaAuthMessage): Promise<SolanaAuthMessageSigned> => {
       log('Signing message')
 
-      const message = getUtf8Encoder().encode(payload.message.text)
+      const message = stringToReadonlyUint8Array(payload.message.text)
       const signedBytes = await signBytes(aliceKeyPair.privateKey, message)
-      const signature = getBase58Decoder().decode(signedBytes)
+      const signature = uint8ArrayToBase58(signedBytes)
 
       return {
         ...payload,

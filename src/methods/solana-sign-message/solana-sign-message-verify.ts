@@ -1,29 +1,19 @@
-import {
-  assertIsAddress,
-  assertIsSignature,
-  getBase58Encoder,
-  getUtf8Encoder,
-  SignatureBytes,
-  verifySignature,
-} from '@solana/web3.js'
+import { assertIsAddress, assertIsSignature, SignatureBytes, verifySignature } from '@solana/web3.js'
 import { SolanaAuthMessageSigned } from '../../solana-auth-message'
 import { SolanaClient } from '../../solana-client'
+import { addressToCryptoKey, base58ToReadonlyUint8Array, stringToReadonlyUint8Array } from '../../utils'
 
 export async function solanaSignMessageVerify(client: SolanaClient, options: SolanaAuthMessageSigned) {
   assertIsSignature(options.signature)
   assertIsAddress(options.publicKey)
 
   const signature = options.signature
-  const signatureBytes = getBase58Encoder().encode(signature)
   const publicKey = options.publicKey
 
-  const publicKeyBytes = await crypto.subtle
-    .importKey('raw', Uint8Array.from(getBase58Encoder().encode(publicKey)), { name: 'Ed25519' }, true, ['verify'])
-    .then((key) => crypto.subtle.exportKey('raw', key))
+  const signatureBytes = base58ToReadonlyUint8Array(signature)
+  const cryptoKey = await addressToCryptoKey(publicKey)
 
-  const cryptoKey = await crypto.subtle.importKey('raw', publicKeyBytes, 'Ed25519', true, ['verify'])
-
-  const message = getUtf8Encoder().encode(options.message.text)
+  const message = stringToReadonlyUint8Array(options.message.text)
   const verified = await verifySignature(cryptoKey, signatureBytes as SignatureBytes, message)
 
   if (!verified) {

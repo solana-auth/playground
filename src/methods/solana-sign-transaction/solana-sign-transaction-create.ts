@@ -18,6 +18,7 @@ export async function solanaSignTransactionCreate(
     nonce: `Nonce ${Date.now()}`,
     message: {
       chain: 'solana:devnet',
+      text: `This is the message to sign`,
     },
   }
 }

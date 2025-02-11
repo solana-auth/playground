@@ -1,7 +1,6 @@
 import { SolanaAuthMethod } from '../solana-auth-methods'
 import { SolanaClient } from '../solana-client'
-import { SolanaAuthMessageCreateOptions, SolanaAuthMessageSigned } from '../solana-auth'
-import { SolanaAuthMessage } from '../solana-auth-message'
+import { SolanaAuthMessage, SolanaAuthMessageCreateOptions, SolanaAuthMessageSigned } from '../solana-auth-message'
 
 export interface SolanaAuthMethodImpl {
   method: SolanaAuthMethod
