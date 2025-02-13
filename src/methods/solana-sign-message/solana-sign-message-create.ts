@@ -7,6 +7,7 @@ export async function solanaSignMessageCreate(
   options: SolanaAuthMessageCreateOptions,
 ): Promise<SolanaAuthMessage> {
   const blockhash = await getLatestBlockhash(client)
+  const text = `Sign this transaction to prove you own ${options.publicKey}`
 
   return {
     publicKey: options.publicKey,
@@ -15,7 +16,7 @@ export async function solanaSignMessageCreate(
     nonce: `Nonce ${Date.now()}`,
     message: {
       chain: 'solana:devnet',
-      text: `This is the message to sign`,
+      text,
     },
   }
 }
